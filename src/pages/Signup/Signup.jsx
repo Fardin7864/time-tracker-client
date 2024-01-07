@@ -2,9 +2,12 @@ import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { AuthContext } from "../../providers/authProvider/AuthanticationProvider";
-import SocialLogin from "../../common/SocialLogin/SocialLogin";
 import useAxios from "../../hooks/useAxios/useAxios";
+import { AuthContext } from "../../providers/authProvider/AuthanticationProvider";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
+// import { AuthContext } from "../../providers/authProvider/AuthanticationProvider";
+// import SocialLogin from "../../common/SocialLogin/SocialLogin";
+// import useAxios from "../../hooks/useAxios/useAxios";
 
 const Signup = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -133,7 +136,7 @@ const Signup = () => {
                         <p className="text-sm text-b font-medium">Already have account? <Link to="/login" className="text-[#be006b]">Log In</Link></p>
                     </div>
                 </form>
-                <SocialLogin></SocialLogin>
+                <SocialLogin/>
             </div>
         </div>
     );

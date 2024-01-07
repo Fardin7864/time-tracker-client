@@ -1,6 +1,7 @@
 import axios from "axios";
 import { getAuth, signOut } from "firebase/auth";
-import { app } from "../../firebase/Firebase";
+import { app } from "../../firebase/firebase";
+// import { app } from "../../firebase/Firebase";
 
 const instance = axios.create({
     baseURL:'https://blog-bloom-server-silk.vercel.app/api/v1',

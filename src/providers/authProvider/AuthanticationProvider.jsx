@@ -1,8 +1,7 @@
 import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import auth from "../../firebase/firebase";
-
+import {auth} from '../../firebase/firebase'
 
 export const AuthContext = createContext();
 
@@ -46,7 +45,7 @@ const AuthanticationProvider = ({children}) => {
             theme: "light",
             });
      }
-    const error = (message) => { 
+    const errorToast = (message) => { 
         toast.error(`${message}`, {
             position: "top-right",
             autoClose: 3000,
@@ -91,7 +90,7 @@ const AuthanticationProvider = ({children}) => {
         logOut,
         isLoading,
         successToast,
-        error
+        errorToast
      }
 
 

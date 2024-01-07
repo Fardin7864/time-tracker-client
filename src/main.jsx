@@ -4,9 +4,11 @@ import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import MainRoute from "./MainRoute.jsx";
 import { ToastContainer } from "react-toastify";
+import AuthanticationProvider from "./providers/authProvider/AuthanticationProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+   <AuthanticationProvider> 
     <RouterProvider router={MainRoute} />
     <ToastContainer
       position="top-right"
@@ -20,5 +22,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       pauseOnHover
       theme="light"
     />
+    </AuthanticationProvider>
   </React.StrictMode>
 );

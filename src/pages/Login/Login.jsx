@@ -1,10 +1,9 @@
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import "react-toastify/dist/ReactToastify.css";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { AuthContext } from "../../providers/authProvider/AuthanticationProvider";
-import SocialLogin from "../../common/SocialLogin/SocialLogin";
 import useAxios from "../../hooks/useAxios/useAxios";
+import { AuthContext } from "../../providers/authProvider/AuthanticationProvider";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 
 const Login = () => {
@@ -17,7 +16,7 @@ const Login = () => {
         password: ''
     })
     const [error, setError] =useState('');
-    const{successToast, faildToast, login} = useContext(AuthContext);
+    const {successToast, errorToast, login} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     // Form data input
@@ -34,7 +33,7 @@ const Login = () => {
         e.preventDefault();
         if(formData.password.length < 6 || !/^(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).+$/.test(formData.password)) {
             setError("Invalid Password!")
-            faildToast()
+            errorToast()
             return;
         }else{
             login(formData.email, formData.password)
@@ -42,12 +41,12 @@ const Login = () => {
                 axios.post('/jwt')
                 .then(res => {console.log(res.data)})
                 navigate(location?.state ? location.state : "/")
-                successToast() })
+                successToast('Successfully Loged In!') })
             .catch(err => {
                 if (err.message === "Firebase: Error (auth/invalid-login-credentials).") {
                     setError("Invalid email and password!")
                 }
-                faildToast()})
+                error()})
         }
      }
 
@@ -99,7 +98,7 @@ const Login = () => {
                     <p className="text-sm text-white font-medium">Don't have account? <Link to="/signup" className="text-[#fb3158]">Sign Up</Link></p>
                 </div>
             </form>
-            <SocialLogin></SocialLogin>
+            <SocialLogin/>
         </div>
     </div>
     );
