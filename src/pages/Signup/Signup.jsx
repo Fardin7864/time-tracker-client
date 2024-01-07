@@ -4,10 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import useAxios from "../../hooks/useAxios/useAxios";
 import { AuthContext } from "../../providers/authProvider/AuthanticationProvider";
-import SocialLogin from "../../components/SocialLogin/SocialLogin";
-// import { AuthContext } from "../../providers/authProvider/AuthanticationProvider";
-// import SocialLogin from "../../common/SocialLogin/SocialLogin";
-// import useAxios from "../../hooks/useAxios/useAxios";
+import SocialLogin from "../../components/SocialLogin/SocialLogin"; 
 
 const Signup = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -21,7 +18,7 @@ const Signup = () => {
         checkbox: false
     })
     const [ error, setError] = useState('');
-    const{successToast, faildToast, networkFaildToast, creatUres} = useContext(AuthContext);
+    const{successToast, errorToast, creatUres} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     // Form data input
@@ -49,7 +46,7 @@ const Signup = () => {
                 axios.post('/jwt')
                 .then(res => {console.log(res.data)})
                 navigate(location?.state ? location.state : "/")
-                successToast();
+                successToast("Successfuly Sign Up!");
             })
             .catch(err => {
                 if (err.message === "Firebase: Error (auth/email-already-in-use).") {
@@ -57,10 +54,10 @@ const Signup = () => {
                     return
                 }
                 else if (err.message === "Firebase: Error (auth/network-request-failed).") {
-                    networkFaildToast();
+                    errorToast("Network error!");
                 }
                 else{
-                    faildToast();
+                    errorToast('Sign Up Faild!');
                 }
             })
         }
