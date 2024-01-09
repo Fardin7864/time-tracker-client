@@ -11,7 +11,7 @@ import Clock from "./components/clock/Clock";
 const Root = () => {
     const navLinks = 
     <>
-    <li><NavLink to={'/'}><FaHome/>Home</NavLink></li>
+    <li><NavLink to={'/'}><FaHome/>Dashboard</NavLink></li>
     <li><NavLink to={'/projects'}><GoProjectRoadmap/>Projects</NavLink></li>
     <li><NavLink to={'/notes'}><FaRegNoteSticky/>Notes</NavLink></li>
     <li><NavLink to={'/Time'}><IoMdTimer/>Time</NavLink></li>

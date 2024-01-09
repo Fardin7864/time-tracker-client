@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom";
+import Stopwatch from "../../components/stopWatch/StopWatch";
 
  
 const Home = () => {
     return (
         <div>
-           <h1 className=" text-2xl font-bold">This is home page! </h1>
+            <Stopwatch/>
         </div>
     );
 };
